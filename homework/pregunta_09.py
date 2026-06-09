@@ -6,11 +6,12 @@ librerias de pandas para resolver las preguntas.
 """
 
 
+import pandas as pd
+
 def pregunta_09():
     """
     Agregue el año como una columna al dataframe que contiene el archivo
     `tbl0.tsv`.
-
     Rta/
         c0 c1  c2          c3  year
     0    0  E   1  1999-02-28  1999
@@ -21,5 +22,7 @@ def pregunta_09():
     37  37  C   9  1997-07-22  1997
     38  38  E   1  1999-09-28  1999
     39  39  E   5  1998-01-26  1998
-
     """
+    df = pd.read_csv("tbl0.tsv", sep="\t")
+    df["year"] = df["c3"].str[:4].astype(int)
+    return df

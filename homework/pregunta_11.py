@@ -6,11 +6,12 @@ librerias de pandas para resolver las preguntas.
 """
 
 
+import pandas as pd
+
 def pregunta_11():
     """
     Construya una tabla que contenga `c0` y una lista separada por ',' de
     los valores de la columna `c4` del archivo `tbl1.tsv`.
-
     Rta/
          c0       c4
     0     0    b,f,g
@@ -22,3 +23,9 @@ def pregunta_11():
     38   38      d,e
     39   39    a,d,f
     """
+    df = pd.read_csv("tbl1.tsv", sep="\t")
+    return (
+        df.groupby("c0")["c4"]
+        .apply(lambda x: ",".join(sorted(x)))
+        .reset_index()
+    )
